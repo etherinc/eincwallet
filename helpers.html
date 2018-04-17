@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mewApp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>eInc Wallet</title>
+<link href="https://wallet.einc.io" rel="canonical">
+<meta content="https://wallet.einc.io" property="og:url">
+<meta content="https://wallet.einc.io" name="twitter:url">
+<link rel="stylesheet" href="css/etherwallet-master.min.css">
+<script type="text/javascript" src="js/etherwallet-static.min.js"></script>
+<script type="text/javascript" src="js/etherwallet-master.js"></script>
+<meta name="description" content="eInc Wallet is a free, open-source, client-side interface for generating eInc wallets & more. Interact with the eInc blockchain easily & securely.">
+<meta name="robots" content="index,follow">
+<meta name="googlebot" content="index,follow">
+<link href="images/fav/favicon.ico" rel="shortcut icon">
+</head>
+<body>
+
+<header class="bg-gradient text-white">
+	<section class="container text-center">
+		<a href="/">
+			<img src="images/logo.png" height="50px" width="auto" alt="eInc Wallet" class="embedded-logo" />
+		</a>
+	</section>
+</header>
+
+
+<section class="container" style="min-height: 50%" ng-controller='viewCtrl'>
+
+  <div class="tab-content" >
+
+    <div class="" ng-controller="helpersCtrl">
+
+  <h1>
+    Convert Ethererum Inc Units (e.g. Ether <-> Wei)
+  </h1>
+
+  <h2 class="p">
+    Ether Wei Converter
+  </h2>
+
+  <section class="mono">
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.wei" ng-change="convertUnit('wei')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;">
+          wei
+        </a>
+      </div>
+    </div>
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.kwei" ng-change="convertUnit('kwei')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;">
+          kwei
+        </a>
+      </div>
+    </div>
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.mwei" ng-change="convertUnit('mwei')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;">
+          mwei
+        </a>
+      </div>
+    </div>
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.gwei" ng-change="convertUnit('gwei')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;">
+          gwei <small>(shannon)
+        </small>
+      </a>
+
+      </div>
+
+    </div>
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.szabo" ng-change="convertUnit('szabo')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;">
+          szabo
+        </a>
+      </div>
+    </div>
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.finney" ng-change="convertUnit('finney')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;">
+          finney
+        </a>
+      </div>
+    </div>
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.ether" ng-change="convertUnit('ether')" />
+      <div class="input-group-btn">
+        <a class="btn btn-primary" style="min-width: 170px;">
+          ether
+        </a>
+      </div>
+    </div>
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.kether" ng-change="convertUnit('kether')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;">
+          kether
+        </a>
+      </div>
+    </div>
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.mether" ng-change="convertUnit('mether')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;">
+          mether
+        </a>
+      </div>
+    </div>
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.gether" ng-change="convertUnit('gether')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;">
+          gether
+        </a>
+      </div>
+    </div>
+
+    <div class="input-group form-group">
+      <input class="form-control" type="text" ng-model="units.tether" ng-change="convertUnit('tether')" />
+      <div class="input-group-btn">
+        <a class="btn btn-default" style="min-width: 170px;"> tether
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+
+
+
+
+
+  <br /><br /><br />
+
+
+  <h1>
+    Convert Decimal to Hexidecimal and Hex to Decimal
+  </h1>
+  <div class="form-group">
+    <label>
+      Decimal
+    </label>
+    <input class="form-control" type="text" ng-model="decimalNumber" ng-change="decimalToHex()" />
+  </div>
+
+  <div class="form-group">
+    <label>
+      Hexadecimal
+    </label>
+    <input class="form-control" type="text" ng-model="hexNumber" ng-change="hexToDecimal()" />
+  </div>
+
+  <div class="form-group">
+    <label>
+      Hexadecimal - Padded Left w/ 64 characters
+    </label>
+    <input class="form-control" type="text" ng-model="hexPaddedLeft" />
+  </div>
+
+  <br /><br /><br />
+
+  <h1>
+    "SHA3" (Keccak-256) It!
+    <small>
+      <a href="https://ethereum.stackexchange.com/questions/550/which-cryptographic-hash-function-does-ethereum-use"
+         target="_blank"
+         rel="noopener noreferrer">
+          yooo... sha3 !== Keccak-256?!
+      </a>
+    </small>
+  </h1>
+
+  <div class="form-group">
+    <label>
+      Input
+    </label>
+    <input class="form-control" type="text" ng-model="inputText" ng-change="toSHA3()" />
+  </div>
+
+  <div class="form-group">
+    <label>
+      Output
+    </label>
+    <input class="form-control" type="text" ng-model="outputText" readonly />
+  </div>
+
+
+  <br /><br /><br />
+
+
+  <h1> Ether Unit Reference Guide
+  </h1>
+  <table class="table table-striped mono">
+    <tr>
+      <td>
+        <strong>
+          wei
+        </strong>
+      </td>
+      <td>
+        <small></small>
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>
+          kwei
+        </strong>
+      </td>
+      <td>
+        <small>
+          ada, femtoether
+        </small>
+      </td>
+      <td>
+        1000
+      </td>
+      <td>
+        1,000
+      </td>
+      <td>
+        10<sup>3</sup>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>
+          mwei
+        </strong>
+      </td>
+      <td>
+        <small>
+          babbage, picoether
+        </small>
+      </td>
+      <td>
+        1000000
+      </td>
+      <td>
+        1,000,000
+      </td>
+      <td>
+        10<sup>6</sup>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td>
+        <strong>
+          gwei
+        </strong>
+      </td>
+      <td>
+        <small>
+          shannon, nanoether, nano
+        </small>
+      </td>
+      <td>
+        1000000000
+      </td>
+      <td>
+        1,000,000,000
+      </td>
+      <td>
+        10<sup>9</sup>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>szabo</strong>
+      </td>
+      <td>
+        <small>
+          microether, micro
+        </small>
+      </td>
+      <td>
+        1000000000000
+      </td>
+      <td>
+        1,000,000,000,000
+      </td>
+      <td>
+        10<sup>12</sup>
+    </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>finney</strong>
+      </td>
+      <td>
+        <small>
+          milliether, milli
+        </small>
+      </td>
+      <td>
+        1000000000000000
+      </td>
+      <td>
+        1,000,000,000,000,000
+      </td>
+      <td>
+        10<sup>15</sup>
+    </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>ether</strong>
+      </td>
+      <td>
+        <small></small>
+      </td>
+      <td>
+        1000000000000000000
+      </td>
+      <td>
+        1,000,000,000,000,000,000
+      </td>
+      <td>
+        10<sup>18</sup>
+    </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>kether</strong>
+      </td>
+      <td>
+        <small>
+          grand, einstein
+        </small>
+      </td>
+      <td>
+        1000000000000000000000
+      </td>
+      <td>
+        1,000,000,000,000,000,000,000
+      </td>
+      <td>
+        10<sup>21</sup>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>mether</strong>
+      </td>
+      <td>
+        <small></small>
+      </td>
+      <td>
+        1000000000000000000000000
+      </td>
+      <td>
+        1,000,000,000,000,000,000,000,000
+      </td>
+      <td>
+        10<sup>24</sup>
+    </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>gether</strong>
+      </td>
+      <td>
+        <small></small>
+      </td>
+      <td>
+        1000000000000000000000000000
+      </td>
+      <td>
+        1,000,000,000,000,000,000,000,000,000
+      </td>
+      <td>
+        10<sup>27</sup>
+    </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>tether</strong>
+      </td>
+      <td>
+        <small></small>
+      </td>
+      <td>
+        1000000000000000000000000000000
+      </td>
+      <td>
+        1000,000,000,000,000,000,000,000,000,000
+      </td>
+      <td>
+        10<sup>30</sup>
+    </td>
+
+    </tr>
+  </table>
+  </p>
+
+
+  
+
+
+  </div>
+
+  <div data-ng-repeat="alert in notifier.alerts">
+  <div class="alert popup alert-{{alert.type}} animated-show-hide"
+       style="bottom: {{85*$index}}px; z-index: {{999+$index}};">
+    <div class="container">
+      <div class='alert-message' ng-bind-html="alert.message"></div>
+    </div>
+    <i class="icon-close" ng-click="alert.close()"></i>
+  </div>
+</div>
+
+
+</section>
+
+
+</main>
+</body>
+</html>
+
